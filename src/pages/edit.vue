@@ -17,16 +17,17 @@
 				<div class="col-2">
 				</div>
 				<div class="col-8">
-					<q-input placeholder="标题"></q-input>
-				</div>				
+					<q-input align="center" class="text-green text-center" placeholder="标题" v-model="article.title"></q-input>
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-2"></div>
-				<div class="col-8">
-					<q-btn class="full-width" label="分类"></q-btn>
+				<div class="col-12">
+					<q-editor fit style="height: 500px" v-model="article.content" />
 				</div>
-				<div class="arrow"></div>
 			</div>
+			<q-page-sticky position="bottom" :offset="[0, 10]">
+				<q-btn full-width class="full-width" color="green" @click="submit">提交</q-btn>
+			</q-page-sticky>
 		</q-page-container>
 	</q-layout>
 </template>
@@ -38,11 +39,19 @@
 		name: 'LayoutDefault',
 		data() {
 			return {
-				leftDrawerOpen: this.$q.platform.is.desktop
+				leftDrawerOpen: this.$q.platform.is.desktop,
+				article: {
+					title: '',
+					content: ''
+				}
 			}
 		},
 		methods: {
-			openURL
+			openURL,
+			submit() {
+				this.$store.commit('article/addArticle', this.article);
+				this.$q.notify('发布成功');
+			}
 		}
 	}
 </script>

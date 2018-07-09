@@ -33,17 +33,19 @@
 		<q-page-sticky position="left" :offset="[18, 18]">
 			<q-btn round icon="add" color="green"></q-btn>
 		</q-page-sticky>
-		<q-page-sticky position="buttom" :offset="[18, 18]">
-			<div class="row">
-				<div class="col-10">
+		{{ $route.params.id }}
+		<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
 					<q-input v-model="comment" placeholder="请输入评论" />
 				</div>
 				<div class="col-2">
-					<q-icon name="create" size="25px" :color="commentIconColor "></q-icon>
+					<q-btn flat round @click="addComment">
+						<q-icon name="create" size="20px" :color="commentIconColor"></q-icon>
+					</q-btn>
+					
 				</div>
-			</div>				
-		</div>	
-		</q-page-sticky>
+			</div>		
 	</q-layout>
 </template>
 
@@ -76,6 +78,13 @@
 		methods: {
 			touch() {
 				this.$q.notify('hello');
+			},
+			addComment() {
+				if(this.comment === "") {
+					
+				} else {
+					this.$q.notify(this.comment);
+				}				
 			}
 		},
 		components: {

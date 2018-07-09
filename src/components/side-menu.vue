@@ -10,7 +10,7 @@
 				<q-scroll-area class="fit q-pa-sm">
 					<comment-card v-for="x in 10" :key="x"></comment-card>
 				</q-scroll-area>
-				<q-input v-model="text" />
+				
 			</q-tab-pane>
 			<q-tab-pane name="contributor">贡献者</q-tab-pane>
 			<q-tab-pane name="editApply">修改申请</q-tab-pane>
